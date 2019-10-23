@@ -15,7 +15,8 @@ class TeacherSerializer(serializers.ModelSerializer):
 
 
     teacher_name = serializers.CharField(source='user.username',
-								read_only=True)
+                                         read_only=True)
+
 
     class Meta:
         model = Teacher
@@ -28,7 +29,8 @@ class CourseSerializer (serializers.ModelSerializer):
     lessons = LessonSerializer(many=True)
     teacher = TeacherSerializer(many=True)
 
+
     class Meta:
         model = Course
-        fields = ('id', 'title', 'description', 'lessons', 'teacher')  #to separate serializer with students for teacher later
+        fields = ('id', 'title', 'description', 'lessons', 'teacher')  #to separate serializer with students for teachers later
 
