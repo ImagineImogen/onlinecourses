@@ -6,17 +6,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import permissions, status
 from .serializers import CourseSerializer, LessonSerializer
-import pysnooper
 
 
 
-# class CourseList(generics.ListCreateAPIView):
-#     queryset = Course.objects.all()
-#     serializer_class = CourseSerializer
-#     #permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-#
-#     # def perform_create(self, serializer):
-#     #     serializer.save(teacher=self.request.user)
+
+
 
 class CoursesListView(APIView):
 
@@ -64,20 +58,3 @@ class LessonView (APIView):
         data = LessonSerializer(lesson).data
         return Response(data)
 
-# @pysnooper.snoop('/home/lisa/otus/enrollment.log')
-# class EnrollmentOnCourseView(APIView):
-#
-#     permission_classes = (permissions.IsAuthenticated,)
-#
-    # def post(self, request):
-    #     user = request.user
-    #     pk = request.data.get('pk')
-    #     course = get_object_or_404(Course, pk=pk)
-    #
-    #     if user not in course.student.all():
-    #         course.student.add(user)
-    #         message = {"Сongratulations! You have successfully signed up for the course"}
-    #         return Response(message, status=status.HTTP_201_CREATED)
-    #     else:
-    #         message = {"Looks like you've already been enrolled."}
-    #         return Response(message, status=status.HTTP_304_NOT_MODIFIED)
