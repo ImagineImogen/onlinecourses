@@ -82,3 +82,10 @@ class Teacher(models.Model):
     def __str__(self):
         return self.user.username
 
+class Profile (models.Model):
+    user = models.OneToOneField(MyUser, on_delete=models.CASCADE) #related_name = 'user_profile'
+    image = models.ImageField(default='default.jpg', upload_to='profile_pictures') #blank - true
+    bio = models.TextField(max_length=500, blank=True)
+
+    def __str__(self):
+        return f'{self.user.username} Profile'

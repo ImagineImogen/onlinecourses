@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Lesson, Course, Teacher
 
 
+
 class LessonSerializer(serializers.ModelSerializer):
 
     course = serializers.StringRelatedField()  # to display the name instead of PK - available for GET requests only

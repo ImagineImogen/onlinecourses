@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import MyUser, Student, Teacher
+from .models import MyUser, Student, Teacher, Profile
 
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
@@ -20,5 +20,5 @@ class UserAdmin(BaseUserAdmin):
 
 	filter_horizontal = ()
 
-admin.site.register([MyUser, Student, Teacher])
+admin.site.register([MyUser, Student, Teacher, Profile])
 admin.site.unregister (Group)
