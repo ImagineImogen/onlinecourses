@@ -21,7 +21,7 @@ class CoursesListView(APIView):
         serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-@pysnooper.snoop('/home/lisa/otus/enrollment.log')
+
 class CoursesDetailView(APIView):
 
 
@@ -30,7 +30,7 @@ class CoursesDetailView(APIView):
         data = CourseSerializer(course).data
         return Response(data)
 
-    @pysnooper.snoop('/home/lisa/otus/enrollment.log')
+
     def post(self, request, pk):
         user = request.user
         course = get_object_or_404(Course, pk=pk)

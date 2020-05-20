@@ -22,16 +22,16 @@ $ python manage.py runserver
 
 [http://127.0.0.1:8000/api/](http://127.0.0.1:8000/api/)
 
-[http://127.0.0.1:8000/api/courses/1](http://127.0.0.1:8000/api/1)
+[http://127.0.0.1:8000/api/1](http://127.0.0.1:8000/api/1)
 
 [http://127.0.0.1:8000/api/lessons/1](http://127.0.0.1:8000/lessons/1)
 
-[http://127.0.0.1:8000/api/users/register](http://127.0.0.1:8000/api/users/register)
+[http://127.0.0.1:8000/api/users/register](http://127.0.0.1:8000/users/register)
 
-[http://127.0.0.1:8000/api/users/login](http://127.0.0.1:8000/api/users/login)
+[http://127.0.0.1:8000/api/users/login](http://127.0.0.1:8000/users/login/)
 
 
-[http://127.0.0.1:8000/api/users/logout](http://127.0.0.1:8000/api/users/logout)
+[http://127.0.0.1:8000/api/users/logout](http://127.0.0.1:8000/users/logout/)
 
 
 #### Example API response
