@@ -1,6 +1,14 @@
+certifi==2019.9.11
+chardet==3.0.4
 Django==2.2
+django-cors-headers==3.2.1
 djangorestframework==3.8.2
+httpie==1.0.3
 idna==2.8
+Markdown==3.1.1
+Pillow==6.2.1
+Pygments==2.4.2
+PySnooper==0.2.8
 pytz==2019.2
 requests==2.22.0
 sqlparse==0.3.0

@@ -11,7 +11,7 @@ venv/
 __pycache__/
 local_settings.py
 db.sqlite3-journal
-media
+
 
 # Unit test / coverage reports
 htmlcov/
