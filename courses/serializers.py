@@ -35,3 +35,31 @@ class CourseSerializer (serializers.ModelSerializer):
         model = Course
         fields = ('id', 'title', 'description', 'lessons', 'teacher')  #to separate serializer with students for teachers later
 
+
+class CourseCreateSerializer(serializers.ModelSerializer):
+
+    lessons = LessonSerializer(many=True, required=False)
+    teacher = TeacherSerializer(many=True, required=False)
+
+    class Meta:
+        model = Course
+        fields = ('id', 'title', 'description', 'lessons', 'teacher')
+
+
+
+    def create(self, validated_data):
+        lessons = validated_data.pop('lessons', [])
+        instance = Course.objects.create(**validated_data)
+        #Lesson.objects.create(Course=instance)
+        for lessons_data in lessons:
+            lesson= Lesson.objects.get(pk=lessons_data.get('id'))
+            instance.tasks.add(lesson)
+        return instance
+
+    def update(self, instance, validated_data):
+        lessons = validated_data.pop('lessons', [])
+        instance = super().update(instance, validated_data)
+        for lessons_data in lessons:
+            lesson = Lesson.objects.get(pk=lessons_data.get('id'))
+            instance.tasks.add(lesson)
+        return instance

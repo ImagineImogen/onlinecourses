@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
-from rest_framework import generics
 from .models import Course, Lesson
 from accounts.models import Student
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import permissions, status
-from .serializers import CourseSerializer, LessonSerializer
+from .serializers import CourseSerializer, LessonSerializer, CourseCreateSerializer
+from accounts.permissions import IsAdminUserOrAuthenticatedOrReadOnly
+from rest_framework import generics
 
 
 
@@ -24,6 +25,7 @@ class CoursesListView(APIView):
 
 class CoursesDetailView(APIView):
 
+    permission_classes = (IsAdminUserOrAuthenticatedOrReadOnly,)
 
     def get(self, request, pk):
         course = get_object_or_404(Course, pk=pk)
@@ -45,6 +47,19 @@ class CoursesDetailView(APIView):
         else:
             message = {"Looks like you've already been enrolled."}
             return Response(message, status=status.HTTP_304_NOT_MODIFIED)
+
+
+class CourseDetailDeleteView (generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAdminUserOrAuthenticatedOrReadOnly,)
+# new
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+
+class CourseCreateView(generics.CreateAPIView):
+    permission_classes = (permissions.IsAdminUser,)
+    queryset = Course.objects.all()
+    serializer_class = CourseCreateSerializer
 
 class LessonView (APIView):
 
