@@ -51,9 +51,18 @@ class CoursesDetailView(APIView):
 
 class CourseDetailDeleteView (generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAdminUserOrAuthenticatedOrReadOnly,)
-# new
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+
+    # def update(self, request, *args, **kwargs):
+    #     serializer = CourseSerializer(instance=self.get_object(), data=request.data)
+    #     # instance = self.get_object()
+    #     # instance.title = request.data.get("title")
+    #     # instance.save()
+    #     serializer.is_valid(raise_exception=True)
+    #     self.perform_update(serializer)
+    #
+    #     return Response(serializer.data)
 
 
 class CourseCreateView(generics.CreateAPIView):

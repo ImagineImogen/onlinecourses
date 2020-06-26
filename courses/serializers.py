@@ -27,13 +27,23 @@ class TeacherSerializer(serializers.ModelSerializer):
 
 class CourseSerializer (serializers.ModelSerializer):
 
-    lessons = LessonSerializer(many=True)
-    teacher = TeacherSerializer(many=True)
+    lessons = LessonSerializer(many=True, required=False)
+    #teacher = TeacherSerializer(many=True)
 
 
     class Meta:
         model = Course
-        fields = ('id', 'title', 'description', 'lessons', 'teacher')  #to separate serializer with students for teachers later
+        fields = ('id', 'title', 'description', 'lessons')  #to separate serializer with students for teachers later
+
+    def update(self, instance, validated_data):
+        lessons = validated_data.pop('lessons', [])
+        instance = super().update(instance, validated_data)
+        for lesson in lessons:
+            Lesson.objects.update( title = lesson["title"], description= lesson["description"], course_id=instance.id) #lesson, updated =
+            #if not updated:
+            #instance.lessons.add(lesson)
+            instance.save()
+        return instance
 
 
 class CourseCreateSerializer(serializers.ModelSerializer):
@@ -43,23 +53,16 @@ class CourseCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ('id', 'title', 'description', 'lessons', 'teacher')
+        fields = ('id', 'title', 'description', 'lessons')
 
 
 
-    def create(self, validated_data):
-        lessons = validated_data.pop('lessons', [])
+    def create(self, validated_data): #by default nested serializers are read-only
+        lessons = validated_data.pop('lessons', [])#to delete the brackets
         instance = Course.objects.create(**validated_data)
-        #Lesson.objects.create(Course=instance)
         for lessons_data in lessons:
-            lesson= Lesson.objects.get(pk=lessons_data.get('id'))
-            instance.tasks.add(lesson)
+            #lesson= Lesson.objects.get(pk=lessons_data.get('id'))
+            #instance.tasks.add(lesson)
+            Lesson.objects.create(course=instance, **lessons_data)
         return instance
 
-    def update(self, instance, validated_data):
-        lessons = validated_data.pop('lessons', [])
-        instance = super().update(instance, validated_data)
-        for lessons_data in lessons:
-            lesson = Lesson.objects.get(pk=lessons_data.get('id'))
-            instance.tasks.add(lesson)
-        return instance
