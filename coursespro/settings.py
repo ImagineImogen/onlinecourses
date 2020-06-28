@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
+    'graphene_django',
 
     'accounts',
     'courses',
@@ -130,6 +131,10 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
 )
 }
+
+# GRAPHENE = {
+#     'SCHEMA': 'coursespro.schema.schema'
+# }
 
 LOGIN_REDIRECT_URL = '/users/profile'
 

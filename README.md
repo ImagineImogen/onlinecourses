@@ -81,6 +81,28 @@ Vary: Accept
 
 ```
 
+###For GraphQL make the following request in [http://127.0.0.1:8000/graphql/](http://127.0.0.1:8000/graphql/)
+
+
+```query {
+  allCourses {
+    id
+    title
+    description
+    lessons {
+      title
+      description
+    }
+    teacher {
+      user {
+        username
+      }
+    }
+  }
+}
+```
+
+
 
 
 ## License
