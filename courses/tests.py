@@ -19,7 +19,6 @@ class TokenAuth (APITestCase):
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertTrue('token' in resp.data)
 
-# Create your tests here.
 
 class TestCoursesListView(APITestCase):
 
@@ -47,19 +46,17 @@ class TestCoursesDetailView(APITestCase):
         self.uri = '/api/'
 
     def test_get(self):
-        c = APIClient()
+        client = APIClient()
         u = Course.objects.create(title="test title")
-        #request = self.factory.get(self.uri)
-        #response = c.get(request, pk=1)
-        #request = self.factory.get(self.uri)
-        #response = self.client.get(self.uri, pk=1)
+        response = client.get(self.uri, pk=u.id, format='api')
 
-        request = self.factory.get(self.uri)
-        response = self.view(request, pk=u.id)
+        # request = self.factory.get(self.uri)
+        # response = self.view(request, pk=u.id)
 
         self.assertEqual(response.status_code, 200,
         'Expected Response Code 200, received {0} instead.'
         .format(response.status_code))
+        self.assertContains(response, 'title')
 
     # def test_post(self):
     #     request = self.factory.get(self.uri)
