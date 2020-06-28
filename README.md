@@ -81,7 +81,7 @@ Vary: Accept
 
 ```
 
-###For GraphQL make the following request in [http://127.0.0.1:8000/graphql/](http://127.0.0.1:8000/graphql/)
+**For GraphQL make the following request in [http://127.0.0.1:8000/graphql/](http://127.0.0.1:8000/graphql/)**
 
 
 ```query {
@@ -89,9 +89,10 @@ Vary: Accept
     id
     title
     description
-    lessons {
-      title
-      description
+    student {
+      user {
+        username
+      }
     }
     teacher {
       user {
