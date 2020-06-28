@@ -7,7 +7,7 @@
 Copy a the repository on your local machine and install dependencies
 
 ```
-$ git clone https://github.com/ImagineImogen/basic_orm.git
+$ git clone https://github.com/ImagineImogen/onlinecourses.git
 $ pip install -r requirements.txt
 ```
 

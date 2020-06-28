@@ -54,15 +54,12 @@ class CourseDetailDeleteView (generics.RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
-    # def update(self, request, *args, **kwargs):
-    #     serializer = CourseSerializer(instance=self.get_object(), data=request.data)
-    #     # instance = self.get_object()
-    #     # instance.title = request.data.get("title")
-    #     # instance.save()
-    #     serializer.is_valid(raise_exception=True)
-    #     self.perform_update(serializer)
-    #
-    #     return Response(serializer.data)
+    def update(self, request, *args, **kwargs):
+        serializer = CourseSerializer(instance=self.get_object(), data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+
+        return Response(serializer.data)
 
 
 class CourseCreateView(generics.CreateAPIView):
