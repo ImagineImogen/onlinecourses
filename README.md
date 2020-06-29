@@ -102,8 +102,29 @@ Vary: Accept
   }
 }
 ```
+```
+query {
+          oneLesson (id: 1) {
+            title,
+            description,
+            course {
+              id,
+              title
+            }
+          }
+        }
+```
 
-
+```
+mutation {
+  changeLesson (title: "New GraphQL title", description: "New GRaphQL is cool Description", id: 16) {
+    lesson {
+      title
+      description
+    }
+  }
+}
+```
 
 
 ## License
