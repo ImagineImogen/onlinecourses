@@ -18,7 +18,7 @@ class CoursesListView(APIView):
     #permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
-        courses = Course.objects.all()
+        courses = Course.objects.prefetch_related('teacher').all()
         serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

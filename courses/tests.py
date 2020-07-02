@@ -1,5 +1,5 @@
 from django.test import TestCase
-from rest_framework.test import APITestCase, APISimpleTestCase
+from rest_framework.test import APITestCase, APISimpleTestCaseб
 from rest_framework.test import APIRequestFactory
 from accounts.models import MyUser
 from accounts.views import *

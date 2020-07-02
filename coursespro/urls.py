@@ -5,9 +5,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    # Examples:
-    # url(r'^$', 'coursespro.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls'), in),
 
     path('api/', include('courses.urls')),
     path('users/', include('accounts.urls')),
@@ -17,3 +14,9 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+    import debug_toolbar
+
+    urlpatterns = [
+                      path('__debug__/', include(debug_toolbar.urls)),
+                  ] + urlpatterns

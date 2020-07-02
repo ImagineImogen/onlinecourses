@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
+    'debug_toolbar',
 
     'accounts',
     'courses',
@@ -58,10 +59,12 @@ MIDDLEWARE = (
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+
 )
 
 ROOT_URLCONF = 'coursespro.urls'
@@ -94,6 +97,12 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+INTERNAL_IPS = [
+    # ...
+    '127.0.0.1',
+    # ...
+]
 
 
 # Internationalization
