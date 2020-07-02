@@ -79,3 +79,6 @@ class LessonView (APIView):
         data = LessonSerializer(lesson).data
         return Response(data)
 
+class AboutUsView (APIView):
+    def post (self, request):
+        print (request.POST)
