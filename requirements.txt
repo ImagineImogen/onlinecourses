@@ -9,7 +9,7 @@ Django==2.2
 django-appconf==1.0.4
 django-cors-headers==3.2.1
 django-debug-toolbar==2.2
-djangorestframework==3.8.2
+djangorestframework==3.9.1
 future==0.18.2
 graphene==2.1.8
 graphene-django==2.11.0
