@@ -146,3 +146,20 @@ LOGIN_REDIRECT_URL = '/users/profile'
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
 ]
+
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
+CELERY_RESULT_BACKEND = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+EMAIL_HOST = 'django.core.mail.backends.smtp.EmailBackend'
+
+# EMAIL_PORT = 465
+# EMAIL_HOST_USER =
+# EMAIL_HOST_PASSWORD =
+# EMAIL_USE_TLS = True
+
+ADMINS = [
+    ("Liza", "myemail@mail.com")
+]

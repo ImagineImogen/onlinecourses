@@ -7,6 +7,8 @@ from rest_framework import permissions, status
 from .serializers import CourseSerializer, LessonSerializer, CourseCreateSerializer
 from accounts.permissions import IsAdminUserOrAuthenticatedOrReadOnly
 from rest_framework import generics
+from .tasks import send_email_task
+from .forms import QuestionForm
 
 
 
@@ -79,6 +81,17 @@ class LessonView (APIView):
         data = LessonSerializer(lesson).data
         return Response(data)
 
+
 class AboutUsView (APIView):
+
     def post (self, request):
-        print (request.POST)
+        form_data = request.data
+        form = QuestionForm(form_data)
+        if form.is_valid():
+            send_email_task.delay()
+            message = {"Thank you! Your question has been submitted"}
+            return Response (message, status=status.HTTP_202_ACCEPTED)
+        else:
+            message = {"Your question or email is not valid. Please try again later"}
+            return Response (message, status=status.HTTP_400_BAD_REQUEST)
+
