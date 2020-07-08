@@ -87,8 +87,10 @@ class AboutUsView (APIView):
     def post (self, request):
         form_data = request.data
         form = QuestionForm(form_data)
+        
         if form.is_valid():
-            send_email_task.delay()
+            task_data = form.cleaned_data
+            send_email_task.delay(**task_data)
             message = {"Thank you! Your question has been submitted"}
             return Response (message, status=status.HTTP_202_ACCEPTED)
         else:

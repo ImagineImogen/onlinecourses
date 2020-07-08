@@ -11,6 +11,12 @@ def create_task(task_type):
 
 @shared_task
 def send_email_task(email, question):
-    send_mail("Your question was submitted", "Thank you for your message, we will get back to you soon", from_email='noreply@webmaster', recipient_list=[email], fail_silently=False,)
+    send_mail(
+        "Your question was submitted",
+        "Thank you for your message, we will get back to you soon",
+        from_email='lieschen.yakov@gmail.com',
+        recipient_list=[email,],
+        fail_silently=False,
+    )
     mail_admins("A new question requires your attention", "A new question from {} . The question is as follows {} " .format(email, question))
     return None

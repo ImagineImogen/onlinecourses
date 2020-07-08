@@ -22,11 +22,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', "test")
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "test")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -123,6 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static'# for docker
+#STATIC_ROOT = 'static' # for local development
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -147,19 +149,22 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
 ]
 
-CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
-CELERY_RESULT_BACKEND = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
+broker_url = 'redis://redis:6379/0'
+result_backend = broker_url
+
+CELERY_BROKER_URL = broker_url
+CELERY_RESULT_BACKEND = result_backend
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
-EMAIL_HOST = 'django.core.mail.backends.smtp.EmailBackend'
 
-# EMAIL_PORT = 465
-# EMAIL_HOST_USER =
-# EMAIL_HOST_PASSWORD =
-# EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
 
-ADMINS = [
-    ("Liza", "myemail@mail.com")
-]
+ADMINS = os.environ.get('ADMINS').split(",")

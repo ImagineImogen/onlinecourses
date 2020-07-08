@@ -3,6 +3,7 @@
 .venv
 env/
 venv/
+pyenv.cfg
 
 ### Django ###
 *.log
