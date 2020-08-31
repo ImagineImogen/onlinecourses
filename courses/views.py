@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Prefetch
 from .models import Course, Lesson
-from accounts.models import Student
+from accounts.models import Student, Teacher
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import permissions, status
@@ -20,7 +21,8 @@ class CoursesListView(APIView):
     #permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
-        courses = Course.objects.prefetch_related('teacher').all()
+        #courses = Course.objects.prefetch_related('teacher').all()
+        courses = Course.objects.prefetch_related(Prefetch('teacher', queryset=Teacher.objects.select_related('user').all())).all()
         serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -77,7 +79,7 @@ class LessonView (APIView):
     #     return Response(serializer.data, status=status.HTTP_200_OK)
 
     def get(self, request, pk):
-        lesson = get_object_or_404(Lesson, pk=pk)
+        lesson = get_object_or_404(Lesson.objects.select_related('course'), pk=pk)
         data = LessonSerializer(lesson).data
         return Response(data)
 
