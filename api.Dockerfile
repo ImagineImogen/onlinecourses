@@ -27,3 +27,5 @@ RUN pip install -r /tmp/requirements.txt
 COPY web_entrypoint.sh /tmp/web_entrypoint.sh
 
 EXPOSE 8000
+
+RUN apt install nodejs -y

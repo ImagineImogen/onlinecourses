@@ -30,3 +30,16 @@ services:
       DJANGO_SETTINGS_MODULE: "coursespro.settings"
     links:
       - redis
+
+frontend:
+  container_name: frontend
+  ports:
+    - 3000:3000
+  build:
+    context: ./frontend
+    dockerfile: api.Dockerfile
+  volumes:
+    - ./:/code/.:/app
+    - ./:/code/.:/app/node_modules
+  depends_on:
+    - api

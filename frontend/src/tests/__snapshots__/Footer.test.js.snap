@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<footer
+  className="makeStyles-footer-1"
+>
+  <p
+    className="MuiTypography-root MuiTypography-body1 MuiTypography-alignLeft"
+    style={
+      Object {
+        "fontSize": 13,
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Hogwarts Online
+  </p>
+  <p
+    className="MuiTypography-root MuiTypography-body1"
+    style={
+      Object {
+        "fontSize": 12,
+      }
+    }
+  >
+    Magical Lane 4
+  </p>
+  <p
+    className="MuiTypography-root MuiTypography-body1"
+    style={
+      Object {
+        "fontSize": 12,
+      }
+    }
+  >
+    12478 London
+  </p>
+  <p
+    className="MuiTypography-root MuiTypography-body1"
+    style={
+      Object {
+        "fontSize": 12,
+      }
+    }
+  >
+    United Kingdom
+  </p>
+  <p
+    className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+    style={
+      Object {
+        "fontSize": 12,
+      }
+    }
+  >
+    Copyright © 
+    <a
+      className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorInherit"
+      href="localhost:3000"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    >
+      Hogwarts Online
+    </a>
+     
+    2020
+    .
+  </p>
+</footer>
+`;
