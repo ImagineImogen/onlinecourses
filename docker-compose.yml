@@ -37,8 +37,10 @@ services:
       - 3000:3000
     build:
       context: ./frontend
-      dockerfile: api.Dockerfile
+      dockerfile: frontend.Dockerfile
     volumes:
-    - ./:/code/.:/app
+    - ./frontend:/app
+    - /app/node_modules
     depends_on:
       - api
+    stdin_open: true

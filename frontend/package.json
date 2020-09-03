@@ -17,7 +17,7 @@
     "styled-components": "^5.1.0"
   },
   "scripts": {
-    "start": "start": "webpack-dev-server --host 0.0.0.0 --config ./webpack.config.js --mode development",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
