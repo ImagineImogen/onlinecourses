@@ -28,4 +28,12 @@ COPY web_entrypoint.sh /tmp/web_entrypoint.sh
 
 EXPOSE 8000
 
-RUN apt install nodejs -y
+FROM node:10
+
+COPY package*.json ./frontend
+
+RUN npm install
+
+COPY . ./frontend
+
+CMD [ "npm", "start" ]
