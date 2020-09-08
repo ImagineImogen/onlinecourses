@@ -18,6 +18,25 @@ Run server
 $ python manage.py runserver
 ```
 
+## To run inside a Docker container
+
+start:
+```
+$ docker-compose up -d --build --remove-orphans
+```
+restart:
+```
+$ docker-compose stop && docker-compose up -d --build --remove-orphans
+```
+stop:
+```
+$ docker-compose stop
+```
+down:
+```
+$ docker-compose down -v
+```
+
 **API Endpoints include:**
 
 [http://127.0.0.1:8000/api/](http://127.0.0.1:8000/api/)

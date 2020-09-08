@@ -1,8 +1,6 @@
-### Homepage for online courses website
+### React frontend for online courses website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-### Usage
+### For non-Docker usage (to run only frontend side)
 
 In the project directory, please run:
 
@@ -16,3 +14,7 @@ You will also see any lint errors in the console.
 
 ### `npm test`
 To run the unit tests
+
+### To run the whole project in Docker
+
+[Please find the instructions here](https://github.com/ImagineImogen/onlinecourses#to-run-inside-a-docker-container)
