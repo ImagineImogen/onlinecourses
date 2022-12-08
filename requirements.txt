@@ -3,7 +3,7 @@ aniso8601==7.0.0
 anyjson==0.3.3
 billiard==3.6.3.0
 celery==4.4.6
-certifi==2019.9.11
+certifi==2022.12.7
 chardet==3.0.4
 Django==2.2
 django-appconf==1.0.4
